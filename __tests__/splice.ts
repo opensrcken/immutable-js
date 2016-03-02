@@ -1,14 +1,13 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import jasmineCheck = require('jasmine-check');
+import * as jasmineCheck from 'jasmine-check';
 jasmineCheck.install();
 
-import I = require('immutable');
-import Seq = I.Seq;
-import List = I.List;
+import * as I from 'immutable';
+var Seq = I.Seq;
+var List = I.List;
 
 describe('splice', () => {
 

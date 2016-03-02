@@ -1,9 +1,8 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 declare var Symbol: any;
 jest.autoMockOff();
 
-import Immutable = require('immutable');
+import * as Immutable from 'immutable';
 import Set = Immutable.Set;
 
 declare function expect(val: any): ExpectWithIs;

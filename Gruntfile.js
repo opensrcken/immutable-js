@@ -54,7 +54,20 @@ module.exports = function(grunt) {
       options: {
         testPathPattern: /.*/
       }
-    }
+    },
+    symlink: {
+      self: {
+        src: '.',
+        dest: 'node_modules/immutable'
+      }
+    },
+    mkdir: {
+      node_modules: {
+        options: {
+          create: ['node_modules']
+        },
+      },
+    },
   });
 
 
@@ -208,9 +221,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-jest');
   grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-contrib-symlink');
+  grunt.loadNpmTasks('grunt-mkdir');
+
 
   grunt.registerTask('lint', 'Lint all source javascript', ['jshint']);
   grunt.registerTask('build', 'Build distributed javascript', ['clean', 'bundle', 'copy']);
-  grunt.registerTask('test', 'Test built javascript', ['jest']);
+  grunt.registerTask('test', 'Test built javascript', ['mkdir:node_modules', 'symlink:self', 'jest']);
   grunt.registerTask('default', 'Lint, build and test.', ['lint', 'build', 'stats', 'test']);
 }

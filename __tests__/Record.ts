@@ -1,9 +1,8 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import Immutable = require('immutable');
+import * as Immutable from 'immutable';
 import Record = Immutable.Record;
 
 describe('Record', () => {

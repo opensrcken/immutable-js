@@ -1,12 +1,11 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import jasmineCheck = require('jasmine-check');
+import * as jasmineCheck from 'jasmine-check'
 jasmineCheck.install();
 
-import Immutable = require('immutable');
+import * as Immutable 'immutable';
 import List = Immutable.List;
 
 function arrayOfSize(s) {

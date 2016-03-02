@@ -1,11 +1,10 @@
 ///<reference path='../../../resources/jest.d.ts'/>
-///<reference path='../../../dist/immutable.d.ts'/>
 ///<reference path='../index.d.ts'/>
 
 jest.autoMockOff();
 
-import Immutable = require('immutable');
-import Cursor = require('immutable/contrib/cursor');
+import * as Immutable from 'immutable';
+import * as Cursor from 'immutable/contrib/cursor';
 
 jasmine.getEnv().addEqualityTester((a, b) =>
   a instanceof Immutable.Iterable && b instanceof Immutable.Iterable ?

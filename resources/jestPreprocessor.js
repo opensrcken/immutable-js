@@ -35,17 +35,20 @@ function compileTypeScript(filePath) {
   var host = typescript.createCompilerHost(options);
   var program = typescript.createProgram([filePath], options, host);
   var checker = typescript.createTypeChecker(program, /*fullTypeCheck*/ true);
-  var result = checker.emitFiles();
+  // resolver, host, targetSourceFile
+  var result = program.emit();
 
-  program.getDiagnostics()
+  typescript.getPreEmitDiagnostics(program)
     .concat(checker.getDiagnostics())
     .concat(result.diagnostics)
     .forEach(function(diagnostic) {
-      var lineChar = diagnostic.file.getLineAndCharacterFromPosition(diagnostic.start);
-      console.error('%s %d:%d %s', diagnostic.file.filename, lineChar.line, lineChar.character, diagnostic.messageText);
+      var lineChar = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
+      var message = typescript.flattenDiagnosticMessageText(diagnostic.messageText, '\n');
+      console.error('%s %d:%d %s', diagnostic.file.fileName, lineChar.line + 1, lineChar.character + 1, message);
     });
 
-  if (result.emitResultStatus !== typescript.EmitReturnStatus.Succeeded) {
+  var exitCode = result.emitSkipped ? 1 : 0;
+  if (exitCode !== 0) {
     throw new Error('Compiling ' + filePath + ' failed');
   }
 

@@ -1,9 +1,8 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import I = require('immutable');
+import * as I from 'immutable';
 
 describe('groupBy', () => {
 
@@ -16,6 +15,7 @@ describe('groupBy', () => {
   })
 
   it('groups indexed sequence', () => {
+    console.log("I.Seq.of(1,2,3,4,5,6).groupBy(x => x % 2).toJS()", I.Seq.of(1,2,3,4,5,6).groupBy(x => x % 2).toJS());
     expect(
       I.Seq.of(1,2,3,4,5,6).groupBy(x => x % 2).toJS()
     ).toEqual(

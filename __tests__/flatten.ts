@@ -1,11 +1,10 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import I = require('immutable');
+import * as I from 'immutable';
 
-import jasmineCheck = require('jasmine-check');
+import * as jasmineCheck from 'jasmine-check';
 jasmineCheck.install();
 
 type SeqType = number | number[] | I.Iterable<number,number>;

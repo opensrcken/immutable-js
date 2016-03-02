@@ -1,0 +1,36 @@
+///<reference path='../resources/jest.d.ts'/>
+jest.autoMockOff();
+import * as jasmineCheck from 'jasmine-check'
+jasmineCheck.install();
+var I = require('immutable');
+var Seq = I.Seq;
+var List = I.List;
+describe('splice', function () {
+    it('splices a sequence only removing elements', function () {
+        expect(Seq.of(1, 2, 3).splice(0, 1).toArray()).toEqual([2, 3]);
+        expect(Seq.of(1, 2, 3).splice(1, 1).toArray()).toEqual([1, 3]);
+        expect(Seq.of(1, 2, 3).splice(2, 1).toArray()).toEqual([1, 2]);
+        expect(Seq.of(1, 2, 3).splice(3, 1).toArray()).toEqual([1, 2, 3]);
+    });
+    it('splices a list only removing elements', function () {
+        expect(List.of(1, 2, 3).splice(0, 1).toArray()).toEqual([2, 3]);
+        expect(List.of(1, 2, 3).splice(1, 1).toArray()).toEqual([1, 3]);
+        expect(List.of(1, 2, 3).splice(2, 1).toArray()).toEqual([1, 2]);
+        expect(List.of(1, 2, 3).splice(3, 1).toArray()).toEqual([1, 2, 3]);
+    });
+    it('has the same behavior as array splice in known edge cases', function () {
+        // arbitary numbers that sum to 31
+        var a = I.Range(0, 49).toArray();
+        var v = List(a);
+        a.splice(-18, 0, 0);
+        expect(v.splice(-18, 0, 0).toList().toArray()).toEqual(a);
+    });
+    check.it('has the same behavior as array splice', [gen.array(gen.int), gen.array(gen.oneOf([gen.int, gen.undefined]))], function (values, args) {
+        var v = List(values);
+        var a = values.slice(); // clone
+        var splicedV = v.splice.apply(v, args); // persistent
+        a.splice.apply(a, args); // mutative
+        expect(splicedV.toArray()).toEqual(a);
+    });
+});
+//# sourceMappingURL=splice.js.map

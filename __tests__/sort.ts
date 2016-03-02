@@ -1,9 +1,8 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import I = require('immutable');
+import * as I from 'immutable';
 import Seq = I.Seq;
 import List = I.List;
 import OrderedMap = I.OrderedMap;

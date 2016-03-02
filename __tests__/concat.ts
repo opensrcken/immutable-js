@@ -1,10 +1,9 @@
 ///<reference path='../resources/jest.d.ts'/>
-///<reference path='../dist/immutable.d.ts'/>
 
 jest.autoMockOff();
 
-import I = require('immutable');
-import Seq = I.Seq;
+import * as I from 'immutable';
+var Seq = I.Seq;
 
 declare function expect(val: any): ExpectWithIs;
 

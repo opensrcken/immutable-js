@@ -37,8 +37,7 @@
 
 declare module 'immutable/contrib/cursor' {
 
-  ///<reference path='../../dist/immutable.d.ts'/>
-  import Immutable = require('immutable');
+  import * as Immutable from 'immutable';
 
 
   export function from(
